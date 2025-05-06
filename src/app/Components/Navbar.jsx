@@ -11,27 +11,33 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed gradient-nav w-full shadow-md px-6 py-4 flex bg-white items-center justify-evenly">
-      <div className="flex items-center space-x-4">
-        <Image 
-          src="/logo.png" 
-          alt="Logo"
-          width={50}
-          height={50}
-          className='text-black'
-        />
-        <h2 className="text-black font-bold uppercase">Boston gaming</h2> {/* Make the h2 text bold and uppercase */}
-      </div>
-      <div>
-        <ul className="flex space-x-6">
-          {menuItems.map(({ href, label }, index) => (
+    <nav className="bg-white w-full h-24">
+      <div className='flex items-center justify-between mx-auto max-w-[1300px] h-full px-4'>
+
+        <div className='flex items-center space-x-2'>
+          <figure>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={50}
+              height={50}
+            />
+          </figure>
+          <figcaption>
+            <p className="font-black uppercase text-2xl">Boston gaming</p>
+          </figcaption>
+        </div>
+
+        <ul className="hidden md:flex space-x-8 uppercase">
+          {menuItems.map((item, index) => (
             <li key={index}>
-              <Link href={href} className="text-black uppercase font-bold">
-                {label} {/* Make menu items text bold and uppercase */}
+              <Link href={item.href} className="font-black">
+                {item.label}
               </Link>
             </li>
           ))}
         </ul>
+
       </div>
     </nav>
   );

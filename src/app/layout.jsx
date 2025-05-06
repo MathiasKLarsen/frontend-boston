@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} antialiased`}>
+      <body className={`flex flex-col ${lato.variable} antialiased min-h-screen`}>
         <Navbar />
         {children}
       </body>
