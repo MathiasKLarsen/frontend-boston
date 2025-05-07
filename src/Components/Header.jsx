@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Error from "./Error";
 
-import useRequestData from "../../Hooks/useRequestData";
+import useRequestData from "../Hooks/useRequestData";
 
 const Header = () => {
     const { makeRequest, isLoading, data, error } = useRequestData();

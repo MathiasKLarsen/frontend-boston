@@ -2,6 +2,7 @@
 
 :root {
   --background: #000000;
+  --foreground: #ffffff; /* Set default text color to white */
 }
 
 @theme inline {
@@ -13,12 +14,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #ffffff; /* Text color for dark mode */
   }
 }
 
 body {
   background: var(--background);
+  color: var(--foreground); /* Use foreground variable for text color */
   font-family: var(--font-lato), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
   "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
