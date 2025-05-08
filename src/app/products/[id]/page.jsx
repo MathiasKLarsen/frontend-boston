@@ -1,30 +1,8 @@
-// "use client"
-
-// import React from "react";
-// import { useSearchParams } from "next/navigation";
-
-// const ProductPage = () => {
-//   const searchParams = useSearchParams();
-//   const id = searchParams.get("id");
-
-//   return (
-//     <section>
-//       <h2>hey</h2>
-//     </section>
-//   );
-// }
-
-// export default ProductPage;
-
-async function getProduct(id) {
-  const res = await fetch(`http://localhost:5039/product/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch product");
-  return res.json();
-}
+import { getProductById } from "../../../data/getProduct"
 
 const ProductPage = async (props) => {
   const { id } = await props.params;
-  const product = await getProduct(id);
+  const product = await getProductById(id);
 
   return (
     <section className="text-white p-8">

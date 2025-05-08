@@ -27,8 +27,8 @@ const Header = () => {
         }
     }, [data]);
 
-    if(isLoading) return;
-    if(error) return;
+    if (isLoading) return <Loader />;
+    if (error) return <Error />;
 
     return (
         <section className="relative w-full overflow-hidden">
