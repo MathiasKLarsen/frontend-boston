@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Loader from "./Loader";
-import Error from "./Error";
+import Loader from "../Components/Loader";
+import Error from "../Components/Error";
 
 import useRequestData from "../Hooks/useRequestData";
 

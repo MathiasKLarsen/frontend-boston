@@ -16,10 +16,10 @@ const Design = async () => {
       </div>
 
       {/* Content */}
-      <section className="mt-6 grid grid-cols-2 w-[1350px]">
+      <section className="mt-6 grid grid-cols-2 w-[1350px] gap-10">
         {/* Gear Categories */}
         <section>
-          <h3 className="text-2xl font-bold mb-4">Pick your gear</h3> {/* Aligns h3 to the left */}
+          <h3 className="text-3xl font-bold mb-4">Pick your gear</h3> {/* Aligns h3 to the left */}
           <ul className="space-y-4">
             {/* Loop through each unique category */}
             {gearCategory?.map(({ gearcategorytitle, _id }) => (
@@ -42,17 +42,28 @@ const Design = async () => {
           </ul>
         </section>
 
-        {/* Summary + Contact formular */}
-        <section>
-          
+        {/* Summary + Contact */}
+        <section className="flex flex-col gap-10">
           {/* Summary */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">Summary</h3>
+            <h3 className="text-3xl font-bold mb-4">Summary</h3>
+            <div className="bg-white rounded-lg flex justify-between p-2">
+              <p className="text-black font-bold">Total</p>
+              <p className="bg-black rounded-full px-2">$0</p>
+            </div>
           </div>
 
-          {/* Contact formular */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">Contact us!</h3>
+          {/* Contact */}
+          <div className="grid grid-cols-2 items-center">
+            <h3 className="text-3xl font-bold mb-4 col-span-2 text-left">Contact us!</h3>
+            <input type="name" placeholder="First Name" className=""/>
+            <input type="name" placeholder="Last Name" className=""/>
+            <input type="email" placeholder="Email" className="col-span-2"/>
+            <button type="submit"
+              className="text-left"
+            >
+              Send
+            </button>
           </div>
         </section>
 
