@@ -18,7 +18,7 @@ const Contact = () => {
       {/* Form */}
       <form
         onSubmit={handleSubmit(() => reset())}
-        className="w-[1300px] max-w-full grid grid-cols-1 gap-6"
+        className="w-[800px] max-w-full grid grid-cols-1 gap-6"
       >
         {/* Name */}
         <div>
@@ -26,7 +26,7 @@ const Contact = () => {
             type="text"
             placeholder="Name"
             {...register("name")}
-            className="w-full border-b-2 border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white"
+            className="w-full border-b-2 text-2xl border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white"
           />
           {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
         </div>
@@ -37,7 +37,7 @@ const Contact = () => {
             type="email"
             placeholder="Email Address"
             {...register("email")}
-            className="w-full border-b-2 border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white"
+            className="w-full border-b-2 text-2xl border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white"
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
         </div>
@@ -48,7 +48,7 @@ const Contact = () => {
             type="text"
             placeholder="Phone Number"
             {...register("phone")}
-            className="w-full border-b-2 border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white"
+            className="w-full border-b-2 text-2xl border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white"
           />
           {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
         </div>
@@ -59,7 +59,7 @@ const Contact = () => {
             rows={5}
             placeholder="Message"
             {...register("message")}
-            className="w-full border-b-2 border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white resize-none"
+            className="w-full border-b-2 text-2xl border-gray-400 focus:outline-none p-2 bg-transparent placeholder-white resize-none"
           />
           {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
         </div>
@@ -67,7 +67,7 @@ const Contact = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="bg-neutral-600 hover:bg-neutral-500 border-2 border-white rounded-lg w-fit py-4 px-10 "
+          className="bg-neutral-600 hover:bg-neutral-500 border-2 border-white rounded-lg w-fit py-4 px-10"
         >
           Send
         </button>

@@ -17,7 +17,7 @@ const About = async () => {
       {/* Content */}
       <article>
         {about && (
-          <div className="grid grid-cols-2 h-[500px] w-[1300px]">
+          <div className="grid grid-cols-2 h-[500px] w-[800px]">
             <p className="text-2xl p-5 text-left">{about.content1}</p>
             <p className="text-2xl p-5 text-left">{about.content2}</p>
           </div>

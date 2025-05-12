@@ -16,27 +16,37 @@ const Design = async () => {
       </div>
 
       {/* Content */}
-      <section className="mt-6 grid grid-cols-2 w-[1350px] gap-10">
-        {/* Gear Categories */}
+      <section className="mt-6 w-[1350px] grid grid-cols-2 gap-10 text-white">
+
+        {/* Gear + GearCategory */}
         <section>
-          <h3 className="text-3xl font-bold mb-4">Pick your gear</h3> {/* Aligns h3 to the left */}
-          <ul className="space-y-4">
-            {/* Loop through each unique category */}
+          <h3 className="text-4xl font-bold mb-6">Pick your gear</h3>
+          <ul className="space-y-6">
             {gearCategory?.map(({ gearcategorytitle, _id }) => (
-              <li key={_id} className="bg-neutral-700 flex items-center rounded-lg">
-                <h4 className="text-xl pr-[3.5rem] text-left">{gearcategorytitle}</h4> {/* Aligns category title to the left */}
-                {/* List the gears belonging to this category */}
-                <ul className="mt-2">
-                  {/* Filter gears that belong to this specific category */}
-                  {gear
-                    .filter((gear) => gear.gearcategory?._id === _id) // Match gear category _id with the current category
-                    .map(({ geartitle, _id }) => (
-                      <li key={_id} className="text-lg pl-4 relative">
-                        <span className="absolute left-0">•</span> {/* Adds dots in front */}
-                        {geartitle}
-                      </li>
-                    ))}
-                </ul>
+              <li
+                key={_id}
+                className="bg-neutral-800 p-6 rounded-xl shadow-md"
+              >
+                <div className="grid grid-cols-3">
+                  <h4 className="text-xl font-semibold text-left">{gearcategorytitle}</h4>
+                  <ul className="space-y-3 col-span-2 text-left">
+                    {gear
+                      .filter((g) => g.gearcategory?._id === _id)
+                      .map(({ geartitle, _id: gearId }) => (
+                        <li key={gearId}>
+                          <label className="cursor-pointer flex space-x-2">
+                            <input
+                              type="radio"
+                              name={gearcategorytitle}
+                              value={gearId}
+                              className="form-radio h-5 w-5 text-blue-500 bg-gray-700 border-gray-500 focus:ring-0 flex-shrink-0"
+                            />
+                            <span className="text-[1.1rem]">{geartitle}</span>
+                          </label>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
               </li>
             ))}
           </ul>
@@ -54,13 +64,13 @@ const Design = async () => {
           </div>
 
           {/* Contact */}
-          <div className="grid grid-cols-2 items-center">
-            <h3 className="text-3xl font-bold mb-4 col-span-2 text-left">Contact us!</h3>
-            <input type="name" placeholder="First Name" className=""/>
-            <input type="name" placeholder="Last Name" className=""/>
-            <input type="email" placeholder="Email" className="col-span-2"/>
+          <div className="grid grid-cols-2 items-center gap-2">
+            <h3 className="text-3xl font-bold col-span-2 text-left">Contact us!</h3>
+            <input type="name" placeholder="First Name" className="text-white placeholder:text-white bg-neutral-600 hover:bg-neutral-500 border-2 border-white rounded-lg py-1 px-3"/>
+            <input type="name" placeholder="Last Name" className="text-white placeholder:text-white bg-neutral-600 hover:bg-neutral-500 border-2 border-white rounded-lg py-1 px-3"/>
+            <input type="email" placeholder="Email" className="col-span-2 text-white placeholder:text-white bg-neutral-600 hover:bg-neutral-500 border-2 border-white rounded-lg py-1 px-3"/>
             <button type="submit"
-              className="text-left"
+              className="text-left bg-neutral-600 hover:bg-neutral-500 border-2 border-white rounded-lg w-fit py-1 px-3"
             >
               Send
             </button>
