@@ -7,7 +7,8 @@ const Navbar = () => {
     { href: "#products", label: "Products" },
     { href: "#design", label: "Design your own" },
     { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" }
+    { href: "#contact", label: "Contact" },
+    { href: "/login", label: "Login" }
   ];
 
   return (

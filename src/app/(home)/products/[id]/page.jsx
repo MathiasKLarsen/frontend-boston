@@ -1,4 +1,4 @@
-import { getProductById } from "../../../data/getProduct"
+import { getProductById } from "../../../../data/getProduct"
 
 const ProductPage = async (props) => {
   const { id } = await props.params;
