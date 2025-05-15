@@ -2,19 +2,19 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Importing icons from react-icons
+import Image from "next/image";
 import LogoutButton from "./LogoutButton";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 // Reusable DropdownMenu Component
 const DropdownMenu = ({ label, items, isOpen, onClick }) => {
   return (
     <li className="space-y-2">
       <button
-        className="text-white w-full text-left hover:bg-neutral-600 p-2 rounded-md flex items-center justify-between bg-neutral-800" // Background for the button
+        className="text-white w-full text-left hover:bg-neutral-600 p-2 rounded-md flex items-center justify-between bg-neutral-800"
         onClick={onClick}
       >
         {label}
-        {/* Display arrow icon based on isOpen */}
         {isOpen ? (
           <FaChevronUp className="text-white" />
         ) : (
@@ -22,12 +22,12 @@ const DropdownMenu = ({ label, items, isOpen, onClick }) => {
         )}
       </button>
       {isOpen && (
-        <ul className="pl-4 space-y-2 bg-neutral-800 rounded-md"> {/* Background for the dropdown items */}
+        <ul className="pl-4 space-y-2 bg-neutral-800 rounded-md">
           {items.map((item, index) => (
             <li key={index}>
               <Link
                 href={item.href}
-                className="text-white hover:bg-neutral-600 p-2 rounded-md block"
+                className="text-white hover:underline p-2 rounded-md block"
               >
                 {item.label}
               </Link>
@@ -40,76 +40,82 @@ const DropdownMenu = ({ label, items, isOpen, onClick }) => {
 };
 
 const AdminSidebar = () => {
-  const [openIndex, setOpenIndex] = useState(null); // Keeps track of the open dropdown index
+  const [openIndex, setOpenIndex] = useState(null);
 
   const menuItems = [
     {
-      label: "Slider",
+      label: "Products",
       items: [
-        { label: "Create Slider", href: "/admin" },
-        { label: "Delete Slider", href: "/admin" },
-        { label: "Update Slider", href: "/admin" },
+        { label: "Create Products", href: "/admin/dashboard" },
+        { label: "Update Products", href: "/admin/dashboard" },
+        { label: "Delete Products", href: "/admin/dashboard" },
       ],
     },
     {
-      label: "Products",
+      label: "Slider",
       items: [
-        { label: "Create Products", href: "/admin" },
-        { label: "Delete Products", href: "/admin" },
-        { label: "Update Products", href: "/admin" },
+        { label: "Create Slider", href: "/admin/dashboard" },
+        { label: "Delete Slider", href: "/admin/dashboard" },
       ],
     },
     {
       label: "About",
-      items: [
-        { label: "Create About", href: "/admin" },
-        { label: "Delete About", href: "/admin" },
-        { label: "Update About", href: "/admin" },
-      ],
-    },
-    {
-      label: "Contact",
-      items: [
-        { label: "Create Contact", href: "/admin" },
-        { label: "Delete Contact", href: "/admin" },
-        { label: "Update Contact", href: "/admin" },
-      ],
+      items: [{ label: "Update About", href: "/admin/dashboard" }],
     },
     {
       label: "Footer",
-      items: [
-        { label: "Create Footer", href: "/admin" },
-        { label: "Delete Footer", href: "/admin" },
-        { label: "Update Footer", href: "/admin" },
-      ],
+      items: [{ label: "Delete Footer", href: "/admin/dashboard" }],
+    },
+    {
+      label: "Contact",
+      items: [{ label: "Update Contact", href: "/admin/dashboard" }],
     },
   ];
 
-  // Handle the dropdown toggle
   const handleDropdownClick = (index) => {
-    // If the same dropdown is clicked, close it. Otherwise, open the new one.
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <nav className="bg-neutral-700 w-64 h-full p-6 flex flex-col justify-between">
-      <div>
-        <h2 className="font-black text-2xl text-white uppercase mb-8">
-          Admin Panel
-        </h2>
+    <nav className="bg-neutral-700 w-64 h-screen p-6 flex flex-col justify-between">
+      {/* Top: Logo and Menu */}
+      <div className="overflow-y-auto">
+        <div className='flex items-center space-x-2 py-5'>
+          <figcaption>
+            <p className="font-black uppercase text-2xl">Admin Panel</p>
+          </figcaption>
+          <figure>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={35}
+              height={35}
+            />
+          </figure>
+        </div>
         <ul className="space-y-4">
           {menuItems.map((menuItem, index) => (
             <DropdownMenu
               key={index}
               label={menuItem.label}
               items={menuItem.items}
-              isOpen={openIndex === index} // Only open the dropdown with the matching index
-              onClick={() => handleDropdownClick(index)} // Toggle dropdown on click
+              isOpen={openIndex === index}
+              onClick={() => handleDropdownClick(index)}
             />
           ))}
         </ul>
       </div>
-      <LogoutButton />
+
+      {/* Bottom: Home & Logout */}
+      <div className="space-y-2 mt-4">
+        <Link
+          href="/"
+          className="text-white hover:bg-blue-600 p-2 rounded-md block text-left"
+        >
+          Home
+        </Link>
+        <LogoutButton />
+      </div>
     </nav>
   );
 };

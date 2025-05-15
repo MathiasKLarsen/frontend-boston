@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -42,6 +42,14 @@ const AdminLogin = () => {
             setError('Invalid credentials, please try again.');
         }
     };
+
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        router.push("/admin");
+      }
+    }, [router])
+    
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-neutral-800">
