@@ -23,11 +23,13 @@ export default function AdminLayout({ children }) {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-neutral-800">
-      <AdminSidebar />
-      <div className="flex-1 bg-neutral-900 p-6 overflow-hidden">
-        {children}
+    <section className="flex h-screen">
+      <div className="w-64">
+        <AdminSidebar />
       </div>
-    </div>
+      <main className="flex-1 p-6 flex justify-center items-start bg-neutral-900 overflow-y-auto">
+        <div className="w-full max-w-6xl">{children}</div>
+      </main>
+    </section>
   );
 }
