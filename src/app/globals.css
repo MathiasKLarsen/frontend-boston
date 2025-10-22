@@ -15,6 +15,12 @@
   }
 }
 
+@layer components {
+  .admin-title {
+    color: black;
+  }
+}
+
 :root {
   --background: #000000;
   --foreground: #ffffff; /* Set default text color to white */

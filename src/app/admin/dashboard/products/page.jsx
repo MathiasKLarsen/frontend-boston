@@ -8,7 +8,7 @@ import {
   deleteProduct,
 } from "../../../../data/getProduct";
 import ProductsFormModal from "../../../../Components/dashboard/ProductsFormModal";
-import ConfirmDeleteBox from "../../../../Components/dashboard/ConfirmDeleteBox";
+import ModalConfirmDeleteBox from "../../../../Components/dashboard/ConfirmDeleteBox";
 import { useRouter } from "next/navigation";
 
 const page = () => {
@@ -135,9 +135,9 @@ const page = () => {
         {product?.map((item) => (
           <div key={item._id} className="border p-4 space-y-4">
             <img
-                src={`http://localhost:5039/images/product/${item.productimage}`}
-                alt={item.title}
-                className="mb-2 max-h-32 object-contain"
+              src={`http://localhost:5039/images/product/${item.productimage}`}
+              alt={item.title}
+              className="mb-2 max-h-32 object-contain"
             />
             <h3 className="font-bold mb-2">{item.title}</h3>
             <p className="mb-2 line-clamp-3">{item.content}</p>
@@ -146,23 +146,23 @@ const page = () => {
             </p>
 
             <div className="flex gap-4">
-                <button
-                  type="button"
-                  className="cursor-pointer bg-blue-400 py-2 px-4 rounded"
-                  onClick={() => {
-                    setEditProduct(item);
-                    setShowModal(true);
-                  }}
-                >
-                  Edit Product
-                </button>
-                <button
-                  type="button"
-                  className="cursor-pointer bg-red-400 py-2 px-4 rounded"
-                  onClick={() => setDeleteTarget(item)}
-                >
-                  Delete Product
-                </button>
+              <button
+                type="button"
+                className="cursor-pointer bg-blue-400 py-2 px-4 rounded"
+                onClick={() => {
+                  setEditProduct(item);
+                  setShowModal(true);
+                }}
+              >
+                Edit Product
+              </button>
+              <button
+                type="button"
+                className="cursor-pointer bg-red-400 py-2 px-4 rounded"
+                onClick={() => setDeleteTarget(item)}
+              >
+                Delete Product
+              </button>
             </div>
           </div>
         ))}
@@ -178,9 +178,10 @@ const page = () => {
         formData={formData}
         onChange={handleUpdate}
         onSubmit={onSubmit}
+        fileName={""}
       />
 
-      <ConfirmDeleteBox
+      <ModalConfirmDeleteBox
         open={!!deleteTarget}
         data={deleteTarget}
         onClose={() => setDeleteTarget(null)}

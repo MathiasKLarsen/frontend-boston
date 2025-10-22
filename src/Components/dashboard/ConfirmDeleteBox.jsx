@@ -1,11 +1,10 @@
 "use client";
 
-import { on } from "events";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 const ModalConfirmDeleteBox = ({ open, data, onClose, onConfirm }) => {
-  const [showFeedback, setShowFeedback] = useState(false); // controlling the display of feedback
+  const [showFeedback, setShowFeedback] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -17,8 +16,9 @@ const ModalConfirmDeleteBox = ({ open, data, onClose, onConfirm }) => {
   const handleDelete = async () => {
     setShowFeedback(true);
 
+    // Show feedback and delay before actually confirming the delete
     setTimeout(() => {
-      onConfirm(data._id);
+      onConfirm(); // optionally pass data._id if needed
       setShowFeedback(false);
       onClose();
     }, 2000);
@@ -26,30 +26,40 @@ const ModalConfirmDeleteBox = ({ open, data, onClose, onConfirm }) => {
 
   return createPortal(
     <>
-      <div className="fixed inset-0 bg-black/20 z-30" onClick={onClose} />
-      <div>
-        <h2>
-          Vil du slette:{""}
-          <span>{data.title}</span>
-        </h2>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/80 z-40"
+        onClick={onClose}
+      />
 
-        {showFeedback && (
-          <div className="bg-green-500 text-white p-2 rounded mb-4">
-            Produktet er slettet!
-          </div>  
-        )}
+      {/* Modal Box */}
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="bg-white p-6 rounded shadow-lg w-full max-w-md relative z-50">
+          <h2 className="text-xl text-black font-bold mb-4 text-center">
+            Er du sikker på du vil slette:{" "}
+            <span className="text-red-600">{data.title}</span>?
+          </h2>
 
-        <div>
-          <button
-            onClick={handleDelete}
-          >
-            Slet
-          </button>
-          <button
-            onClick={onClose}
-          >
-            Annuller
-          </button>
+          {showFeedback && (
+            <div className="bg-green-500 text-white p-2 rounded mb-4 text-center">
+              Product deleted!
+            </div>
+          )}
+
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+            >
+              Slet
+            </button>
+            <button
+              onClick={onClose}
+              className="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded"
+            >
+              Annuller
+            </button>
+          </div>
         </div>
       </div>
     </>,
